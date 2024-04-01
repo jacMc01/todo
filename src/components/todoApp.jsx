@@ -20,6 +20,7 @@ export default function TodoApp() {
     };
 
     setTodos([...todos, newTodo]);
+    setTitle("");
   };
 
     // Delete Todo
