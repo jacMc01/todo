@@ -33,6 +33,19 @@ export default function TodoApp() {
     setTodos(todos.map(todo => todo.id === id ? { ...todo, title:newTitle } : todo));
   };
 
+    // New function to sort todos alphabetically by title
+    const sortTodos = () => {
+      const sortedTodos = [...todos].sort((a, b) => a.title.localeCompare(b.title));
+      setTodos(sortedTodos);
+    };
+
+    // Function to sort todos in reverse alphabetical order by title
+    const sortTodosReverse = () => {
+      const sortedTodos = [...todos].sort((a, b) => b.title.localeCompare(a.title));
+      setTodos(sortedTodos);
+    };
+  
+
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-8">
@@ -52,6 +65,20 @@ export default function TodoApp() {
             onClick={handleSubmit}
           />
         </form>
+        <div className="flex justify-center mb-10">
+          <button 
+            onClick={sortTodos} 
+            className="mt-4 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg cursor-pointer          transition duration-200 text-lg"
+          >
+            Sort A-Z
+          </button>
+          <button 
+            onClick={sortTodosReverse} 
+            className="mt-4 ml-2 px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white font-bold rounded-lg cursor-pointer           transition duration-200 text-lg"
+          >
+            Sort Z-A
+          </button>
+        </div>
         <div>
           {todos.map((item) => (
             <Todo key={item.id} item={item} onDelete={handleDelete} onEdit={handleEdit} />
